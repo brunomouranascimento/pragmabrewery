@@ -1,0 +1,38 @@
+<div [ngClass]="{open: isActive}" class="app-notification-center" color="primary">
+  <div class="app-notification-center_header">
+    <div class="app-notification-center_header-wrapper">
+      <div class="today notifications_tab-active" [ngClass]="{'notifications_tab-active': todayTabActive}" (click)="toggleTodayTab()">
+        <mat-icon>calendar_today</mat-icon>
+        <span class='today_label'>Today</span>
+      </div>
+      <mat-divider [vertical]="true"></mat-divider>
+      <div class="notifications" [ngClass]="{'notifications_tab-active': notificationsTabActive}" (click)="toggleNotificationsTab()">
+        <mat-icon class='notifications_icon'>notifications</mat-icon>
+        <span class='notifications_label' *ngIf="notificationsCount">Notifications ({{notificationsCount}})</span>
+        <span class='notifications_label' *ngIf="!notificationsCount">Notifications</span>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="do-not-disturb">
+    <span style="display: flex;">
+      <mat-icon>notifications_off</mat-icon>
+      Do not disturb
+    </span>
+    <mat-slide-toggle color="warn"></mat-slide-toggle>
+  </div>
+  <hr>
+  <perfect-scrollbar>
+    <div class="today-content" [ngClass]="{'fade-in': todayTabActive, 'fade-out': !todayTabActive}">
+      <p class="now">{{ now }}<sup>{{ abbreviation }}</sup></p>
+
+      <mat-calendar [selected]="selectedDate" (selectedChange)="onSelect($event)"></mat-calendar>
+    </div>
+    <div class="notifications-content" [ngClass]="{'fade-in': notificationsTabActive, 'fade-out': !notificationsTabActive}">
+      <app-notification *ngFor="let notification of notifications" [type]="notification.type" (click)="dismissNotification(notification)">{{
+        notification.message }}</app-notification>
+      <p *ngIf="!notificationsCount" class="now">There's no notifications</p>
+    </div>
+  </perfect-scrollbar>
+</div>
+<div [ngClass]="{active: isActive}" class="notification-center_overlay" (click)="closeNotificationCenter(false)"></div>

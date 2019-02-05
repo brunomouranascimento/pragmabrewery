@@ -1,0 +1,56 @@
+@import '~src/scss/_mixins.scss';
+
+.app-truck {
+  margin-top: 89px;
+  padding: 0 35px;
+
+  .app-truck_setup-trip {
+    min-height: calc(100vh - 120px);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+    .app-truck_setup-trip-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 64px;
+      border-bottom: solid 1px #DDDDDD;
+      font-size: 32px;
+
+
+      @include device(smartphone) {
+        font-size: 21px;
+      }
+
+      @include device(big-smartphone) {
+        font-size: 21px;
+      }
+
+      @include device(smartphone-landscape) {
+        font-size: 24px;
+      }
+
+      span {
+        margin-right: 15px;
+      }
+    }
+
+    form {
+      display: grid;
+      padding: 25px;
+      // position: relative;
+      max-height: calc(100vh - 184px);
+    }
+
+    .trip-beers_title {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .trip-beers_checkbox {
+      text-align: center;
+
+      mat-checkbox:not(:first-child) {
+        margin-left: 25px;
+      }
+    }
+  }
+}

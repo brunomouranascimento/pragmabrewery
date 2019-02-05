@@ -1,0 +1,29 @@
+<div class="app-login" *ngIf="isShowLogin$ | async as isShowLogin">
+  <div class="app-login_wrapper">
+    <div class="app-login_header">
+      <img src="../../../assets/images/pragmalogo.png" alt="Pragma Logo">
+      <span class="application_name">PragmaBrewery</span>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="authenticationService.login(loginForm.value)" autocomplete="off">
+      <div class="app-login_form">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input matInput formControlName="email">
+          <span matSuffix>
+            <mat-icon class="mat-18">account_box</mat-icon>
+          </span>
+          <mat-error *ngIf="loginForm.controls['email'].invalid">User required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password">
+          <span matSuffix>
+            <mat-icon class="mat-18">lock</mat-icon>
+          </span>
+          <mat-error *ngIf="loginForm.controls['password'].invalid">Type the password</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="submit" value="Login" [disabled]="loginForm.invalid">LOGIN</button>
+      </div>
+    </form>
+  </div>
+</div>

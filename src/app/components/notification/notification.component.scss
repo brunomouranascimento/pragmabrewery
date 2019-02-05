@@ -1,0 +1,54 @@
+.app-notification {
+  font-size: 14px;
+  position: relative;
+  padding: .75rem .1rem .75rem .75rem;;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &.app-notification_success {
+    color: #155724;
+    background-color: #D4EDDA;
+    border-color: #C3E6CB;
+  }
+
+  &.app-notification_info {
+    color: #004085;
+    background-color: #CCE5FF;
+    border-color: #B8DAFF;
+  }
+
+  &.app-notification_danger {
+    color: #721C24;
+    background-color: #F8D7DA;
+    border-color: #F5C6CB;
+  }
+
+  &.app-notification_warning {
+    color: #856404;
+    background-color: #FFF3CD;
+    border-color: #FFEEBA;
+  }
+
+  .app-notification_close {
+    color: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+
+    &:hover {
+      color: #000000;
+      text-decoration: none;
+      opacity: .75;
+    }
+    mat-icon {
+      font-size: 16px;
+      margin-top: 8px;
+    }
+  }
+}

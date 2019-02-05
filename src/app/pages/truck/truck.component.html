@@ -1,0 +1,73 @@
+<app-header></app-header>
+<perfect-scrollbar>
+  <div class="app-truck container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="app-truck_setup-trip">
+          <div class="app-truck_setup-trip-header">
+            <span><i class="fas fa-truck-moving"></i></span>
+            <span>SET-UP A NEW TRIP</span>
+          </div>
+          <perfect-scrollbar>
+            <form [formGroup]="tripForm" autocomplete="off">
+              <div class="row">
+                <mat-form-field appearance="outline" class="col-md-12">
+                  <mat-label>Driver name</mat-label>
+                  <input matInput formControlName="driverName">
+                  <span matSuffix>
+                    <mat-icon class="mat-18">account_box</mat-icon>
+                  </span>
+                </mat-form-field>
+              </div>
+              <div class="row">
+                <mat-form-field appearance="outline" class="col-md-6">
+                  <mat-label>E-mail</mat-label>
+                  <input matInput formControlName="email">
+                  <span matSuffix>
+                    <mat-icon class="mat-18">mail</mat-icon>
+                  </span>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-md-6">
+                  <mat-label>Occupation</mat-label>
+                  <input matInput formControlName="occupation">
+                  <span matSuffix>
+                    <mat-icon class="mat-18">work</mat-icon>
+                  </span>
+                </mat-form-field>
+              </div>
+
+              <div class="row">
+                <mat-form-field appearance="outline" class="col-md-6">
+                  <mat-label>Phone</mat-label>
+                  <input matInput formControlName="phone">
+                  <span matSuffix>
+                    <mat-icon class="mat-18">phone</mat-icon>
+                  </span>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-md-6">
+                  <mat-label>Emergency Phone</mat-label>
+                  <input matInput formControlName="emergencyPhone">
+                  <span matSuffix>
+                    <mat-icon class="mat-18">phone</mat-icon>
+                  </span>
+                  <mat-hint>Type an emergency contact phone</mat-hint>
+                </mat-form-field>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h3 class="trip-beers_title">Which beers do you carrying?</h3>
+                  <div class="trip-beers_checkbox">
+                    <mat-checkbox formControlName="beers" *ngFor="let beer of beers" value="{{ beer.id }}">{{ beer.type }}</mat-checkbox>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </perfect-scrollbar>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <p>teste</p>
+      </div>
+    </div>
+  </div>
+</perfect-scrollbar>

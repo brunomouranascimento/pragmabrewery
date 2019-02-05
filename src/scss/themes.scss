@@ -1,0 +1,84 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+@mixin global-theme ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+
+  .app-header,
+  .app-notification-center,
+  .notifications-content {
+    background-color: mat-color($primary);
+    color: mat-color($foreground, text);
+  }
+
+
+  .app-truck_setup-trip {
+    background-color: lighten(mat-color($primary), 10%);
+    color: mat-color($foreground, text);
+  }
+
+
+  .toolbar-separator {
+    background: mat-color($foreground, text);
+  }
+
+  .notifications-content {
+    background-color: darken(mat-color($primary), 5%);
+    color: mat-color($foreground, text);
+  }
+
+
+  .app-login_wrapper {
+    background-color: mat-color($background, background);
+  }
+
+  .mat-menu-item,
+  .mat-menu-item .mat-icon:not([color]),
+  .mat-menu-item-submenu-trigger::after,
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,
+  .mat-form-field-appearance-outline .mat-form-field-outline-thick,
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-prefix,
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-suffix,
+  .mat-nav-list .mat-list-item,
+  .mat-input-element,
+  .mat-form-field.mat-focused .mat-form-field-label,
+  .app-navbar_wrapper,
+  .mat-icon-button,
+  .mat-raised-button.mat-accent,
+  .application_name {
+    color: mat-color($foreground, text);
+    caret-color: mat-color($foreground, text);
+  }
+
+  .notifications_tab-active {
+    background-color: mat-color($foreground, text);
+    color: mat-color($primary);
+  }
+
+
+}
+
+$default-primary: mat-palette($mat-grey, 900);
+$default-accent: mat-palette($mat-green, A400, A100, A400);
+$default-warn: mat-palette($mat-deep-orange);
+$default-theme: mat-dark-theme($default-primary, $default-accent, $default-warn);
+
+$light-primary: mat-palette($mat-grey, 200);
+$light-accent: mat-palette($mat-blue-grey, A200, A100, A400);
+$light-warn: mat-palette($mat-deep-orange, 500);
+$light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+
+.default-theme {
+  @include angular-material-theme($default-theme);
+  @include global-theme($default-theme);
+}
+
+.light-theme {
+  @include angular-material-theme($light-theme);
+  @include global-theme($light-theme);
+}
