@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { AuthenticationService } from './authentication/authentication.service';
 import { AuthenticationGuard } from './authentication/authentication.guard';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { DeliverNotificationComponent } from './components/deliver-notification/deliver-notification.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
     PagesModule
   ],
   providers: [AuthenticationService, AuthenticationGuard, AngularFireAuth],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DeliverNotificationComponent]
 })
 export class AppModule { }

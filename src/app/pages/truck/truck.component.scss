@@ -37,19 +37,18 @@
     form {
       display: grid;
       padding: 25px;
-      // position: relative;
-      max-height: calc(100vh - 184px);
-    }
+      position: relative;
+      min-height: calc(100vh - 184px);
 
-    .trip-beers_title {
-      text-align: center;
-      margin-top: 15px;
-    }
-    .trip-beers_checkbox {
-      text-align: center;
+      input.planned-stops::-webkit-outer-spin-button,
+      input.planned-stops::-webkit-inner-spin-button {
+        display: none;
+      }
 
-      mat-checkbox:not(:first-child) {
-        margin-left: 25px;
+      .start-trip {
+        display: grid;
+        position: relative;
+        bottom: 0;
       }
     }
   }

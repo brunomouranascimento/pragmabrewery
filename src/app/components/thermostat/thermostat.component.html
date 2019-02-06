@@ -1,0 +1,25 @@
+<div class="app-thermostat">
+  <div class="bar">
+    <div class="inner_bar"></div>
+    <div class='hold left'>
+      <div class='fill fill1' #fill #fill2></div>
+    </div>
+    <div class='hold right'>
+      <div class='fill fill2' #fill #fill2></div>
+    </div>
+    <span>Freezing</span>
+  </div>
+  <div class="shadow-bar" #shadowBar>
+    <div class="shadow-cube"></div>
+  </div>
+  <div class="number" #number>
+    <span class="ext">{{ temp }}</span>
+  </div>
+  <div class="center">
+    <span class="arrow minus" (click)="decreaseTemp()"><mat-icon>keyboard_arrow_left</mat-icon></span>
+    <span class="arrow plus" (click)="increaseTemp()"><mat-icon class="material-icons">keyboard_arrow_right</mat-icon></span>
+    <div class="small">
+      <span class="heat">{{ temp }}</span>
+    </div>
+  </div>
+</div>

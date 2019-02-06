@@ -1,5 +1,6 @@
 export class Beer {
   id: string;
+  number: number;
   type: string;
   minTemp: number;
   maxTemp: number;

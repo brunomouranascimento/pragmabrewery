@@ -5,7 +5,6 @@ export class Driver {
   email: string;
   password: string;
   phone: string;
-  emergencyPhone: string;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
