@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../@material/material.module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import {NgxMaskModule} from 'ngx-mask';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { ContainerComponent } from './container/container.component';
