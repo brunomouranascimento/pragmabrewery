@@ -1,7 +1,8 @@
-<div mat-dialog-content>
-  <p>Deliver number {{ deliver }}</p>
+<div mat-dialog-content class="app-deliver-notification">
+  <h1 *ngIf="deliver.deliverCount != 0" > DELIVER {{ deliver.deliverCount }}</h1>
+  <p>{{ deliver.message }}</p>
 </div>
-<div mat-dialog-actions>
-  <button mat-raised-button>Cancel</button>
-  <button mat-raised-button color=accent cdkFocusInitial (click)="adjustTemp()">Adjust</button>
+<div mat-dialog-actions class="app-deliver-notification_actions">
+  <button *ngIf="deliver.message != 'Deliveries finished'" mat-raised-button color=accent cdkFocusInitial (click)="gotIt()">GOT IT</button>
+  <button *ngIf="deliver.message === 'Deliveries finished'" mat-raised-button color=accent cdkFocusInitial (click)="onDeliveriesFinished()">OK</button>
 </div>

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
+import { ElementRef } from '@angular/core';
 
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { Beer } from 'src/app/models/beer';
 import { Driver } from 'src/app/models/driver';
-import { timer, Subject } from 'rxjs';
-import { takeWhile } from 'rxjs/operators';
 import { DeliverNotificationComponent } from 'src/app/components/deliver-notification/deliver-notification.component';
 
 @Component({
@@ -21,35 +20,57 @@ export class TruckComponent implements OnInit {
   beers: Beer[];
   tripDriver: Driver;
 
-  travelTime = 10000;
+  travelTime = 60000;
   deliveriesCount = 0;
   tripMode = false;
 
-  timeLeft = this.travelTime / 1000;
+  deliver = {
+    message: `Truck door's are opened, so the temperature of all containers rises 2 degrees.
+              The temperatures will now automatically adjust to the ideal.`,
+    deliverCount: 0
+  };
+
+  timeElapssed = 0;
   interval: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private firebaseService: FirebaseService,
     private authenticationService: AuthenticationService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public truck: ElementRef) { }
 
   startTrip(trip) {
-
-    this.startTimer();
+    this.gotoTruck();
+    this.deliver.message = `Truck door's are opened, so the temperature of all containers rises 2 degrees.
+                            The temperatures will now automatically adjust to the ideal.`;
+    this.startCronometer();
     this.tripMode = true;
     this.deliveriesCount ++;
     setTimeout(() => {
-      this.pauseTimer();
-      const dialogRef = this.dialog.open(DeliverNotificationComponent, { data: this.deliveriesCount });
+      this.pauseCronometer();
+      this.beers.forEach(beer => {
+        beer.idealTemp += 2;
+      });
+      this.deliver.deliverCount ++;
+      // tslint:disable-next-line:max-line-length
+      const dialogRef = this.dialog.open(DeliverNotificationComponent, { width: '350px', data: this.deliver });
       dialogRef.afterClosed().subscribe(result => {
         if (this.deliveriesCount < trip.plannedStops) {
+          this.beers.forEach(beer => {
+            beer.idealTemp -= 2;
+          });
           this.startTrip(trip);
         } else {
           this.tripMode = false;
-          this.dialog.open(DeliverNotificationComponent, { data: 'Deliveries finished' });
+          this.deliver.deliverCount = 0;
+          this.deliver.message = 'Deliveries finished';
+          this.dialog.open(DeliverNotificationComponent, { data: this.deliver });
+          this.beers.forEach(beer => {
+            beer.idealTemp -= 2;
+          });
           this.deliveriesCount = 0;
-          this.timeLeft = this.travelTime / 1000;
+          this.timeElapssed = 0;
         }
       });
     }, (this.travelTime / trip.plannedStops));
@@ -59,7 +80,7 @@ export class TruckComponent implements OnInit {
     if (this.tripMode === false) {
       return 'START TRIP';
     }
-    return 'DRIVING';
+    return `DRIVING | Travel time elapssed: ${this.timeElapssed} minutes` ;
   }
 
   getDeliveriesMessage() {
@@ -67,21 +88,26 @@ export class TruckComponent implements OnInit {
           this.tripForm.get('plannedStops').hasError('required') ? 'At least one deliver must be made' : '';
   }
 
-  startTimer() {
+  startCronometer() {
     this.interval = setInterval(() => {
-      if (this.timeLeft > 0) {
-        this.timeLeft--;
+      if (this.timeElapssed < (this.travelTime / 1000)) {
+        this.timeElapssed++;
       } else {
-        this.timeLeft = 60;
+        this.timeElapssed = 0;
       }
     }, 1000);
   }
 
-  pauseTimer() {
+  pauseCronometer() {
     clearInterval(this.interval);
   }
 
+  gotoTruck() {
+    this.truck.nativeElement.querySelector('.charge').scrollIntoView({behavior: 'smooth'});
+  }
+
   ngOnInit() {
+
     this.firebaseService.getBeers().subscribe(beers => {
       this.beers = beers as Beer[];
     });

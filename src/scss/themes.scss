@@ -11,13 +11,15 @@
 
   .app-header,
   .app-notification-center,
-  .notifications-content {
+  .notifications-content,
+  .mat-snack-bar-container {
     background-color: mat-color($primary);
     color: mat-color($foreground, text);
   }
 
 
-  .app-truck_setup-trip {
+  .app-truck_setup-trip,
+  .app-container {
     background-color: lighten(mat-color($primary), 10%);
     color: mat-color($foreground, text);
   }

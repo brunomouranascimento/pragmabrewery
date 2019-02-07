@@ -6,7 +6,7 @@
         <div class="app-truck_setup-trip">
           <div class="app-truck_setup-trip-header">
             <span><i class="fas fa-truck-moving"></i></span>
-            <span>SET-UP A NEW TRIP</span>
+            <span>SET-UP NEW TRIP</span>
           </div>
           <perfect-scrollbar>
             <form [formGroup]="tripForm" (ngSubmit)="startTrip(tripForm.value)" autocomplete="off">
@@ -62,8 +62,33 @@
         </div>
       </div>
       <div class="col-md-6">
-        <!-- <app-thermostat></app-thermostat> -->
-        <p>Travel time: {{ timeLeft }} minutes</p>
+        <div class="row">
+          <div class="col-md-6 truck-wrapper">
+            <div class="truck">
+              <div class="cabin">
+                <div class="front-window"></div>
+                <div class="left-window"></div>
+                <div class="right-window"></div>
+                <div class="sky-window"></div>
+              </div>
+              <div class="charge">
+
+                <div class="row">
+                  <div class="col-md-6 beer-container" *ngFor="let beer of beers">
+
+                    <app-container>
+                      <p class="beer-type">{{ beer.type | uppercase }}</p>
+                      <h1 class="beer-temp">{{ beer.idealTemp }}<sup>c</sup></h1>
+
+                    </app-container>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

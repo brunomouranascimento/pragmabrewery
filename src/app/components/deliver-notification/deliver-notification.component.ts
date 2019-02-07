@@ -1,3 +1,4 @@
+import { Beer } from './../../models/beer';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 
@@ -8,17 +9,20 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 })
 export class DeliverNotificationComponent implements OnInit {
 
+  beers: Beer[];
+
   constructor(
     public dialogRef: MatDialogRef<DeliverNotificationComponent>,
     @Inject(MAT_DIALOG_DATA) public deliver,
     public snackBar: MatSnackBar) { }
 
-  onCancel() {
+  onDeliveriesFinished() {
     this.dialogRef.close();
   }
 
-  adjustTemp() {
+  gotIt() {
     this.dialogRef.close();
+    this.openSnackBar('TEMPERATURES WERE ADJUSTED', 'OK');
   }
 
   openSnackBar(message: string, action: string) {

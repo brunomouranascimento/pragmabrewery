@@ -4,6 +4,7 @@ export class Beer {
   type: string;
   minTemp: number;
   maxTemp: number;
+  idealTemp: number;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);

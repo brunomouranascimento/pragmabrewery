@@ -49,6 +49,92 @@
         display: grid;
         position: relative;
         bottom: 0;
+
+        button {
+          white-space: inherit;
+        }
+      }
+    }
+  }
+
+  .truck-wrapper {
+    margin: 0 auto;
+
+    .truck {
+      @include device(smartphone) {
+        margin-top: 45px;
+      }
+
+      @include device(big-smartphone) {
+        margin-top: 45px;
+      }
+
+      @include device(smartphone-landscape) {
+        margin-top: 45px;
+      }
+      .cabin {
+        min-height: 19vh;
+        border: solid 1px rgba(0, 0, 0, 0.22);
+        border-radius: 10px;
+        margin: 0 20px 10px 20px;
+
+        .front-window {
+          min-height: 1vh;
+          border: solid 1px rgba(0, 0, 0, 0.22);
+          background-color: #DDDDDD;
+          border-radius: 15px;
+          margin: 0 15px;
+        }
+
+        .left-window {
+          width: .5vw;
+          height: 12vh;
+          border: solid 1px rgba(0, 0, 0, 0.22);
+          background-color: #DDDDDD;
+          border-radius: 15px;
+          position: absolute;
+          left: 0;
+          margin: 10px 35px;
+        }
+
+        .right-window {
+          width: .5vw;
+          height: 12vh;
+          border: solid 1px rgba(0, 0, 0, 0.22);
+          background-color: #DDDDDD;
+          border-radius: 15px;
+          position: absolute;
+          right: 0;
+          margin: 10px 35px;
+        }
+
+        .sky-window {
+          min-height: 10vh;
+          border: solid 1px rgba(0, 0, 0, 0.22);
+          background-color: #DDDDDD;
+          border-radius: 15px;
+          margin: 35px 55px 10px 55px;
+        }
+      }
+
+      .charge {
+        min-height: calc(100vh - 255px);
+        border: solid 1px rgba(0, 0, 0, 0.22);
+        border-radius: 5px;
+
+        .beer-container {
+          padding: 0;
+
+          .beer-type {
+            text-align: center;
+            border-bottom: solid 1px #DDDDDD;
+
+          }
+
+          .beer-temp {
+            text-align: center;
+          }
+        }
       }
     }
   }

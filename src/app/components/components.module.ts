@@ -12,7 +12,6 @@ import { ContainerComponent } from './container/container.component';
 import { NotificationCenterComponent } from './notification-center/notification-center.component';
 import { HeaderComponent } from './header/header.component';
 import { NotificationComponent } from './notification/notification.component';
-import { ThermostatComponent } from './thermostat/thermostat.component';
 import { DeliverNotificationComponent } from './deliver-notification/deliver-notification.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -34,7 +33,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NotificationCenterComponent,
     HeaderComponent,
     NotificationComponent,
-    ThermostatComponent,
     DeliverNotificationComponent
   ],
   declarations: [
@@ -42,7 +40,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NotificationCenterComponent,
     HeaderComponent,
     NotificationComponent,
-    ThermostatComponent,
     DeliverNotificationComponent
   ],
   providers: [

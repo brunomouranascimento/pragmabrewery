@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { Beer } from 'src/app/models/beer';
-
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
@@ -10,15 +7,8 @@ import { Beer } from 'src/app/models/beer';
 })
 export class ContainerComponent implements OnInit {
 
-  beers: Beer[];
+  constructor() { }
 
-  constructor(private firebaseService: FirebaseService) { }
-
-  ngOnInit() {
-    this.firebaseService.getBeers().subscribe(beers => {
-      this.beers = beers as Beer[];
-      console.log(this.beers);
-    });
-  }
+  ngOnInit() { }
 
 }
